@@ -1,0 +1,19 @@
+.h1{
+    font-weight: 100px;
+}
+
+.nkButton{
+    width:80%;
+    margin: 10px 5px;
+}
+.Todo_Container
+{
+    margin:20px 10px;
+}
+input{
+    margin: 10px 10px;
+}
+.Item-container{
+  text-align:left;
+margin-left:15px;
+}
