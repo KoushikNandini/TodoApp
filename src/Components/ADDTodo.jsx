@@ -1,16 +1,17 @@
 import { useRef } from "react"
 import css from "./AddTodo.module.css"
+import { useContext } from "react"
+import { TodosItemContainer } from "../TodosStore/TodosStore"
 
-function ADDTODO({ handleonTem }) {
+function ADDTODO() {
 
     const todoItem = useRef()
     const todoDate = useRef()
-
+   const {addNewTodo} = useContext(TodosItemContainer)
 
     const handlenewItem = (e) => {
-
         e.preventDefault()
-        handleonTem(todoItem.current.value, todoDate.current.value)
+        addNewTodo(todoItem.current.value, todoDate.current.value)
         todoItem.current.value = ""
         todoDate.current.value = ""
 
