@@ -1,37 +1,30 @@
-import { useState } from "react"
+import { useRef } from "react"
 import css from "./AddTodo.module.css"
 
-function ADDTODO({ handleonTem })
-{
+function ADDTODO({ handleonTem }) {
 
-    const [todoitem, setTodoItem] = useState("")
-    const [tododate, setTodoDate] = useState("")
-    
-   const handleonName = (e) => {
-            setTodoItem(e.target.value)
-    }
-    const handleonDate = (e) => {
-       
-        setTodoDate(e.target.value)
-    }
-    const handlenewItem = () => {
-        handleonTem(todoitem, tododate)
-        setTodoItem("")
-        setTodoDate("")
+    const todoItem = useRef()
+    const todoDate = useRef()
+
+
+    const handlenewItem = (e) => {
+
+        e.preventDefault()
+        handleonTem(todoItem.current.value, todoDate.current.value)
+        todoItem.current.value = ""
+        todoDate.current.value = ""
 
     }
     return <>
-        <div className="container">
+        <form onSubmit={handlenewItem} className="container">
             <div className="row">
-                <div className= "col-4">
-                    <input className={ css.text} value={todoitem} type="text" placeholder="Enter your text"
-                         onChange={handleonName}
-                    />
+                <div className="col-4">
+                    <input className={css.text} ref={todoItem} type="text" placeholder="Enter your text" />
                 </div>
-                <div className="col-4"><input className={css.text} type="date" value={tododate} onChange={handleonDate} /></div>
-                <div className="col-2"><button type="button" className="btn btn-success nkButton" onClick={handlenewItem}>ADD</button></div>
+                <div className="col-4"><input type="date" className={css.text} ref={todoDate} /></div>
+                <div className="col-2"><button type="submit" className="btn btn-success nkButton" >ADD</button></div>
             </div>
-        </div>
+        </form>
     </>
 }
 
